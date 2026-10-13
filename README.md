@@ -4,6 +4,8 @@ Ophaaldagen van **RWM afval & reiniging** (Beek, Echt-Susteren, Sittard-Geleen, 
 
 De data komt **rechtstreeks van rwm.nl**, dezelfde bron als de afvalkalender op de website. Er zit geen tussenserver van derden tussen.
 
+> **Geen officiële RWM-integratie.** Dit is een onafhankelijk hobbyproject en wordt niet gemaakt, ondersteund of goedgekeurd door RWM afval & reiniging. Vragen of problemen? Meld ze hier via GitHub Issues, niet bij RWM.
+
 ## Installatie via HACS
 
 1. HACS → menu (⋮) → **Custom repositories**
@@ -52,6 +54,10 @@ automation:
 RWM levert oud papier voor Echt-Susteren niet als kalenderdata. Op de RWM-site staat alleen een tekst per kern, zoals "1e zaterdag van de maand" of "laatste maandag". De integratie leest die tekst uit en rekent er datums van, inclusief de uitzonderingen die RWM vermeldt ("de ophaaldag van 16/02 wordt vervangen door 09/02"). Uitzonderingen zonder jaartal gelden alleen voor het lopende jaar.
 
 Je kern wijzigen: **Apparaten & diensten → RWM Afvalkalender → Configureren**.
+
+## Icoon
+
+Het icoon in Home Assistant is een eigen ontwerp en heeft niets met het logo van RWM te maken. Het wordt getoond vanaf Home Assistant 2026.3. Op oudere versies zie je een standaardicoon.
 
 ## Betrouwbaarheid
 
