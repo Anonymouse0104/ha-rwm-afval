@@ -20,9 +20,9 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
 ) -> None:
     coordinator: RWMCoordinator = entry.runtime_data
-    entiteiten: list[SensorEntity] = [
-        RWMStroomSensor(coordinator, sid) for sid in coordinator.data.streams
-    ]
+    entiteiten: list[SensorEntity] = []
+    for sid in coordinator.data.streams:
+        entiteiten += [RWMStroomSensor(coordinator, sid), RWMDagenSensor(coordinator, sid)]
     entiteiten += [
         RWMVolgendeSensor(coordinator),
         RWMDagSensor(coordinator, 0, "vandaag", "Ophaling vandaag"),
@@ -60,6 +60,29 @@ class RWMStroomSensor(RWMEntity, SensorEntity):
             "volgende_ophalingen": [d.isoformat() for d in komend[:6]],
             "laatst_bijgewerkt": self.coordinator.data.bijgewerkt.isoformat(),
         }
+
+
+class RWMDagenSensor(RWMEntity, SensorEntity):
+    """Aantal dagen tot de eerstvolgende ophaling van één afvalstroom (0 = vandaag)."""
+
+    _attr_native_unit_of_measurement = "dagen"
+    _attr_icon = "mdi:calendar-clock"
+
+    def __init__(self, coordinator: RWMCoordinator, sid: str) -> None:
+        super().__init__(coordinator, f"{sid}_dagen")
+        self._sid = sid
+        self._attr_name = f"{coordinator.data.streams[sid]['title']} dagen tot ophaling"
+
+    @property
+    def native_value(self) -> int | None:
+        vandaag = _vandaag()
+        volgende = self.coordinator.data.volgende(self._sid, vandaag)
+        return (volgende - vandaag).days if volgende else None
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        volgende = self.coordinator.data.volgende(self._sid, _vandaag())
+        return {"datum": volgende.isoformat() if volgende else None}
 
 
 class RWMVolgendeSensor(RWMEntity, SensorEntity):
