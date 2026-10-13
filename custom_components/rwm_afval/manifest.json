@@ -1,0 +1,12 @@
+{
+  "domain": "rwm_afval",
+  "name": "RWM Afvalkalender",
+  "codeowners": ["@Anonymouse0104"],
+  "config_flow": true,
+  "documentation": "https://github.com/Anonymouse0104/ha-rwm-afval",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Anonymouse0104/ha-rwm-afval/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
