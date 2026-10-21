@@ -63,6 +63,7 @@ Het icoon in Home Assistant is een eigen ontwerp en heeft niets met het logo van
 
 - De data wordt twee keer per dag ververst.
 - Is RWM even niet bereikbaar, dan blijft de laatst bekende data actief, ook na een herstart. In de attributen zie je via `laatst_bijgewerkt` hoe oud de data is.
+- Na een mislukte poging probeert de integratie het elke 15 minuten opnieuw, tot het weer lukt. Daarna geldt weer het normale ritme van twee keer per dag. Een storing geeft één waarschuwing in het logboek, niet elk kwartier een nieuwe.
 - RWM heeft geen officiële API. Verandert RWM de website, dan moet de integratie mogelijk worden aangepast. De GitHub Action draait elke week de tests.
 
 ## Nieuwe versie uitbrengen (voor de beheerder)

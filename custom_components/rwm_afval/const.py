@@ -26,6 +26,9 @@ PAPIER_STREAM_ID: Final = "papier"
 # Twee keer per dag verversen: genoeg voor wijzigingen, zonder RWM te belasten
 UPDATE_INTERVAL: Final = timedelta(hours=12)
 
+# Na een mislukte poging sneller opnieuw proberen, tot het weer lukt
+RETRY_INTERVAL: Final = timedelta(minutes=15)
+
 STORAGE_VERSION: Final = 1
 
 # RWM-icoonnaam -> Material Design Icon

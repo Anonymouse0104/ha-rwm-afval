@@ -21,6 +21,7 @@ from .const import (
     DOMAIN,
     GEEN_PAPIER,
     PAPIER_STREAM_ID,
+    RETRY_INTERVAL,
     STORAGE_VERSION,
     UPDATE_INTERVAL,
 )
@@ -81,6 +82,7 @@ class RWMCoordinator(DataUpdateCoordinator[RWMData]):
         self._store: Store[dict[str, Any]] = Store(
             hass, STORAGE_VERSION, f"{DOMAIN}.{entry.entry_id}"
         )
+        self._storing = False
 
     async def _haal_op(self) -> RWMData:
         bagid = self.config_entry.data[CONF_BAGID]
@@ -141,17 +143,42 @@ class RWMCoordinator(DataUpdateCoordinator[RWMData]):
         try:
             data = await self._haal_op()
         except RWMError as err:
-            if self.data is not None:
-                _LOGGER.warning("RWM niet bereikbaar (%s); laatst bekende data blijft actief", err)
-                return self.data
-            if (cache := await self._store.async_load()) is not None:
-                try:
-                    data = RWMData.uit_dict(cache)
-                except (KeyError, TypeError, ValueError):
-                    raise UpdateFailed(f"RWM niet bereikbaar: {err}") from err
-                _LOGGER.warning("RWM niet bereikbaar (%s); opgeslagen data wordt gebruikt", err)
-                return data
-            raise UpdateFailed(f"RWM niet bereikbaar: {err}") from err
+            return await self._bij_storing(err)
 
+        if self._storing:
+            _LOGGER.info("RWM is weer bereikbaar; ophaaldata bijgewerkt")
+        self._storing = False
+        self.update_interval = UPDATE_INTERVAL
         await self._store.async_save(data.als_dict())
         return data
+
+    async def _bij_storing(self, err: RWMError) -> RWMData:
+        """Val terug op bekende data en probeer het binnen 15 minuten opnieuw."""
+        eerste_melding = not self._storing
+        self._storing = True
+        self.update_interval = RETRY_INTERVAL
+        log = _LOGGER.warning if eerste_melding else _LOGGER.debug
+
+        if self.data is not None:
+            log(
+                "RWM niet bereikbaar (%s); laatst bekende data blijft actief, "
+                "nieuwe poging over %s minuten",
+                err,
+                int(RETRY_INTERVAL.total_seconds() // 60),
+            )
+            return self.data
+
+        if (cache := await self._store.async_load()) is not None:
+            try:
+                data = RWMData.uit_dict(cache)
+            except (KeyError, TypeError, ValueError):
+                raise UpdateFailed(f"RWM niet bereikbaar: {err}") from err
+            log(
+                "RWM niet bereikbaar (%s); opgeslagen data wordt gebruikt, "
+                "nieuwe poging over %s minuten",
+                err,
+                int(RETRY_INTERVAL.total_seconds() // 60),
+            )
+            return data
+
+        raise UpdateFailed(f"RWM niet bereikbaar: {err}") from err
