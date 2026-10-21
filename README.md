@@ -68,8 +68,14 @@ Het icoon in Home Assistant is een eigen ontwerp en heeft niets met het logo van
 
 ## Nieuwe versie uitbrengen (voor de beheerder)
 
-1. Pas `version` aan in `custom_components/rwm_afval/manifest.json` (bijvoorbeeld `1.0.1`)
-2. Commit en push
-3. Maak een tag met dezelfde versie en push die: `git tag v1.0.1 && git push --tags`
+1. Pas `version` aan in `custom_components/rwm_afval/manifest.json` (bijvoorbeeld `1.2.3`)
+2. Commit en push naar `main`
+3. Wacht tot de workflow **Valideren** groen is (tests, hassfest en HACS-controle)
+4. Maak een tag met dezelfde versie en push alleen die tag:
 
-GitHub maakt dan automatisch een release, en HACS toont de update bij iedereen die de integratie heeft.
+   ```bash
+   git tag v1.2.3
+   git push origin v1.2.3
+   ```
+
+De workflow **Release** controleert of de tag gelijk is aan de versie in `manifest.json` en maakt dan automatisch een GitHub-release. HACS toont de update daarna bij iedereen die de integratie heeft.
