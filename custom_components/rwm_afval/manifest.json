@@ -1,7 +1,6 @@
 {
   "domain": "rwm_afval",
   "name": "RWM Afvalkalender",
-  "categories": ["local_services"],
   "codeowners": ["@Anonymouse0104"],
   "config_flow": true,
   "documentation": "https://github.com/Anonymouse0104/ha-rwm-afval",
