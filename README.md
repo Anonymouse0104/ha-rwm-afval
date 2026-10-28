@@ -8,11 +8,10 @@ De data komt **rechtstreeks van rwm.nl**, dezelfde bron als de afvalkalender op 
 
 ## Installatie via HACS
 
-1. HACS → menu (⋮) → **Custom repositories**
-2. URL: `https://github.com/Anonymouse0104/ha-rwm-afval`, type **Integration**
-3. Zoek **RWM Afvalkalender**, installeer en herstart Home Assistant
-4. **Instellingen → Apparaten & diensten → Integratie toevoegen → RWM Afvalkalender**
-5. Vul postcode en huisnummer in. Woon je in Echt-Susteren, kies dan ook je kern voor oud papier.
+1. Open HACS en zoek naar **RWM Afvalkalender**
+2. Installeer de integratie en herstart Home Assistant
+3. **Instellingen → Apparaten & diensten → Integratie toevoegen → RWM Afvalkalender**
+4. Vul postcode en huisnummer in. Woon je in Echt-Susteren, kies dan ook je kern voor oud papier.
 
 Meerdere adressen? Voeg de integratie gewoon nog een keer toe.
 
