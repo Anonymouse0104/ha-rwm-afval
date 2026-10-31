@@ -2,6 +2,8 @@
 
 Ophaaldagen van **RWM afval & reiniging** (Beek, Echt-Susteren, Sittard-Geleen, Stein) als sensoren en kalender in Home Assistant.
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Anonymouse0104&repository=ha-rwm-afval&category=integration) [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/anonymouse0501)
+
 De data komt **rechtstreeks van rwm.nl**, dezelfde bron als de afvalkalender op de website. Er zit geen tussenserver van derden tussen.
 
 > **Geen officiële RWM-integratie.** Dit is een onafhankelijk hobbyproject en wordt niet gemaakt, ondersteund of goedgekeurd door RWM afval & reiniging. Vragen of problemen? Meld ze hier via GitHub Issues, niet bij RWM.
