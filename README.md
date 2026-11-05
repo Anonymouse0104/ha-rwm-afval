@@ -4,7 +4,7 @@
 
 # RWM Afvalkalender
 
-[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Anonymouse0104&repository=ha-rwm-afval&category=integration) [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/anonymouse0501)
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=anonymouse-labs&repository=ha-rwm-afval&category=integration) [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/anonymouse0501)
 
 [Nederlands](#nederlands) | [English](#english)
 
@@ -62,7 +62,7 @@ automation:
 
 #### Herinnering via WhatsApp
 
-Liever een appje dan een pushmelding? Met [WhatsApp Notifier](https://github.com/Anonymouse0104/ha-whatsapp-notifier) stuur je dezelfde herinnering naar jezelf of de huisgroep, zonder externe dienst. Vervang in het voorbeeld hierboven de `notify.notify` regel door `notify.send_message` met de notify-entiteit van je chat, of door `whatsapp_notifier.send_message`. Antwoordt iemand, dan kan de herinnering stoppen.
+Liever een appje dan een pushmelding? Met [WhatsApp Notifier](https://github.com/anonymouse-labs/ha-whatsapp-notifier) stuur je dezelfde herinnering naar jezelf of de huisgroep, zonder externe dienst. Vervang in het voorbeeld hierboven de `notify.notify` regel door `notify.send_message` met de notify-entiteit van je chat, of door `whatsapp_notifier.send_message`. Antwoordt iemand, dan kan de herinnering stoppen.
 
 ### Oud papier in Echt-Susteren
 
@@ -153,7 +153,7 @@ automation:
 
 #### Reminder via WhatsApp
 
-Prefer a chat message over a push notification? With [WhatsApp Notifier](https://github.com/Anonymouse0104/ha-whatsapp-notifier) you send the same reminder to yourself or the household group, without a third-party service. In the example above, replace the `notify.notify` line with `notify.send_message` and the notify entity of your chat, or with `whatsapp_notifier.send_message`. If someone replies, the reminder can stop.
+Prefer a chat message over a push notification? With [WhatsApp Notifier](https://github.com/anonymouse-labs/ha-whatsapp-notifier) you send the same reminder to yourself or the household group, without a third-party service. In the example above, replace the `notify.notify` line with `notify.send_message` and the notify entity of your chat, or with `whatsapp_notifier.send_message`. If someone replies, the reminder can stop.
 
 ### Old paper in Echt-Susteren
 
